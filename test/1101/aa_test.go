@@ -47,7 +47,7 @@ func withGoroutine(opts ...func() error) (err error) {
 }
 
 // 无缓冲适合协程内写，协程外等待数据，接收数据，这样才不会卡主
-// 有缓冲适合同一个区域
+// 有缓冲不阻塞，多协程可以，可能这个协程写，那个协程释放
 func TestCh(t *testing.T) {
 	ch := make(chan bool, 1)
 	var num int
